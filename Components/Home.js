@@ -23,6 +23,11 @@ const HomeScreen = () => {
           style={styles.menu_text}
           onPress={() => navigation.navigate("Salads")}
         />
+        <Button
+          title="Orders"
+          style={styles.menu_text}
+          onPress={() => navigation.navigate("Orders")}
+        />
       </View>
     </View>
   );

@@ -2,11 +2,11 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Drinks from "./Components/Drinks";
-import Home from "./Components/Home";
 import Meals from "./Components/Meals";
 import { StyleSheet } from "react-native";
 import HomeScreen from "./Components/Home";
 import Salads from "./Components/Salads";
+import Orders from "./Components/Orders";
 
 const Stack = createStackNavigator();
 
@@ -18,6 +18,7 @@ const App = () => {
         <Stack.Screen name="Drinks" component={Drinks} />
         <Stack.Screen name="Meals" component={Meals} />
         <Stack.Screen name="Salads" component={Salads} />
+        <Stack.Screen name="Orders" component={Orders} />
       </Stack.Navigator>
     </NavigationContainer>
   );
