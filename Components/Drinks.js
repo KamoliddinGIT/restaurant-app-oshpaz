@@ -1,7 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import {
-  Button,
   Image,
   Platform,
   ScrollView,
@@ -11,7 +10,6 @@ import {
   View,
 } from "react-native";
 import Loader from "./Loader";
-import Icon from "react-native-vector-icons/FontAwesome";
 import useHttp from "../hooks/useHttp";
 
 export default function Drinks() {
@@ -55,28 +53,34 @@ export default function Drinks() {
   ) : (
     <View>
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {drinks.map((item) => {
-          return (
-            <View key={item.idDrink} style={styles.card}>
-              <Image
-                source={{ uri: `${item.strDrinkThumb}` }}
-                style={{ width: 260, height: 250, borderRadius: 15 }}
-              />
-              <View style={styles.drink_options}>
-                <Text style={styles.drink_text}>{item.strDrink}</Text>
-                <Icon
-                  name="plus"
-                  size={30}
-                  color="grey"
-                  onPress={() => addDrink(item.idDrink)}
-                />
-                <Text style={styles.drink_text}>
-                  {item.idDrink.slice(0, 2)},000 so`m
-                </Text>
+        <View style={styles.cards}>
+          {drinks.map((item) => {
+            return (
+              <View key={item.idDrink} style={styles.card}>
+                <View style={styles.image_text}>
+                  <Image
+                    source={{ uri: `${item.strDrinkThumb}` }}
+                    style={{ width: 154, height: 150, borderRadius: 15 }}
+                  />
+                  <Text style={styles.drink_text}>{item.strDrink}</Text>
+                </View>
+                <View style={styles.drink_options}>
+                  <View style={styles.plus}>
+                    <Text
+                      style={styles.icon}
+                      onPress={() => addDrink(item.idDrink)}
+                    > 
+                      + 
+                    </Text>
+                  </View>
+                  <Text style={styles.drink_text}>
+                    {item.idDrink.slice(0, 2)},000 so`m
+                  </Text>
+                </View>
               </View>
-            </View>
-          );
-        })}
+            );
+          })}
+        </View>
       </ScrollView>
 
       <View style={styles.menu}>
@@ -116,26 +120,33 @@ const styles = StyleSheet.create({
     alignItems: "center",
     overflow: "scroll",
     backgroundColor: "#bbb",
-    padding: 30,
+  },
+  image_text: {
+    width: "100%",
   },
   card: {
+    width: "45%",
     backgroundColor: "white",
-    padding: 10,
+    // padding: 10,
     borderRadius: 15,
     marginBottom: 20,
   },
   drink_options: {
     flexDirection: "row",
-    padding: 10,
-    justifyContent: "space-between",
+    justifyContent: "space",
+    gap: 15,
     alignItems: "center",
   },
   drink_text: {
-    fontSize: 16,
+    fontSize: 14,
+    textAlign: "center",
+    marginTop: 5,
+    color: "green",
+    fontWeight: "600",
   },
   menu: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     ...Platform.select({
       ios: {
@@ -149,13 +160,48 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    padding: 50,
+    padding: 20,
     zIndex: 10,
+    height: 100,
   },
   menu_text: {
     fontSize: 20,
     fontWeight: "500",
     color: "white",
-    marginBottom: 10,
+  },
+  btn: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+    height: 100,
+  },
+  cards: {
+    width: "100%",
+    height: "100%",
+    flexWrap: "wrap",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 10,
+    flexDirection: "row",
+    paddingBottom: 100,
+  },
+  plus: {
+    justifyContent: "center",
+    width: 65,
+    height: 30,
+    // padding: 10,
+    backgroundColor: "green",
+    alignContent: "center",
+    borderTopRightRadius: 25,
+    borderBottomLeftRadius: 15,
+  },
+  image_text: {
+    padding: 10,
+  },
+  icon: {
+    textAlign: "center",
+    color: "white",
+    fontSize: 20,
+    fontWeight: "500",
   },
 });

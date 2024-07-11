@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
     alignItems: "center",
     ...Platform.select({
       ios: {
@@ -67,13 +67,19 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
     width: "100%",
-    padding: 50,
+    padding: 20,
     zIndex: 10,
+    height: 100,
   },
   menu_text: {
     fontSize: 20,
     fontWeight: "500",
     color: "white",
-    marginBottom: 10,
+  },
+  btn: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+    height: 100,
   },
 });
